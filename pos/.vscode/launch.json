@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-SpringbootAuthUpdatedApplication<springboot-auth-updated>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.auth0.samples.authapi.springbootauthupdated.SpringbootAuthUpdatedApplication",
+            "projectName": "springboot-auth-updated",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-Application<pos>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.thanhhaidev.pos.Application",
+            "projectName": "pos",
+            "args": ""
+        }
+    ]
+}
