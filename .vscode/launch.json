@@ -19,6 +19,16 @@
             "mainClass": "com.thanhhaidev.pos.Application",
             "projectName": "pos",
             "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-Application<master>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.thanhhaidev.master.Application",
+            "projectName": "master",
+            "args": ""
         }
     ]
 }
