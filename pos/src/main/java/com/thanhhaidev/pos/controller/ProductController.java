@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.thanhhaidev.pos.model.Product;
-import com.thanhhaidev.pos.service.ProductService;
+import com.thanhhaidev.pos.repository.ProductRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,15 +16,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1")
 public class ProductController {
     @Autowired
-    private ProductService productService;
+    private ProductRepository productRepository;
 
     @GetMapping("/products")
     public List<Product> getAllProduct() {
-        return productService.getListProduct();
+        return productRepository.findAll();
     }
 
     @GetMapping("/products/{id}")
     public Optional<Product> getProductById(@PathVariable Long id) {
-        return productService.findById(id);
+        return productRepository.findById(id);
     }
 }
