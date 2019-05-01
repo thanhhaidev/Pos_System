@@ -1,6 +1,8 @@
 package com.thanhhaidev.headquarter;
 
 import java.io.File;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 
 import com.thanhhaidev.headquarter.model.FileStorageProperties;
@@ -32,8 +34,7 @@ public class Application {
 	private static final String URL_UPLOAD_FILE = "http://localhost:4000/uploadFile";
 	private static final String PATH_FILE = "E:/POS_System/headquarter/src/main/resources/database/";
 
-	// @Scheduled(cron = "0 0 * * * ?")
-	@Scheduled(fixedDelay = 1000 * 60)
+	@Scheduled(fixedDelay = 5000)
 	public void scheduleTaskAsynchronizeData() throws FileExtensionException {
 		String authToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU1Njg1NTIwM30.wk7OkCPC8M_-2bZpt0Q_B2Wv9eEaSEQDSlxEILbnyuhs0Yko2Jl-xODsgpaaC3X_CnDfmkd8NzcPRVtcfAq6pQ";
 
@@ -43,19 +44,18 @@ public class Application {
 		headers.add("Authorization", "Bearer " + authToken);
 
 		RestTemplate restTemplate = new RestTemplate();
-		// restTemplate.exchange(URL_PRODUCT + "1", HttpMethod.GET, new
-		// HttpEntity<>("parameters", headers), String.class);
-		// restTemplate.exchange(URL_PRODUCT + "2", HttpMethod.GET, new
-		// HttpEntity<>("parameters", headers), String.class);
-		// restTemplate.exchange(URL_PRODUCT + "3", HttpMethod.GET, new
-		// HttpEntity<>("parameters", headers), String.class);
+		restTemplate.exchange(URL_PRODUCT + "1", HttpMethod.GET, new HttpEntity<>("parameters", headers), String.class);
 
 		headers.setContentType(MediaType.MULTIPART_FORM_DATA);
 		MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
-		body.add("file", getFile(PATH_FILE + "product_20190501_1.json"));
 
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMdd");
+		LocalDateTime now = LocalDateTime.now();
+
+		System.out.println(PATH_FILE + "product_" + dtf.format(now) + "_1.json");
+
+		body.add("file", getFile(PATH_FILE + "product_" + dtf.format(now) + "_1.json"));
 		HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
-
 		restTemplate.postForEntity(URL_UPLOAD_FILE, requestEntity, String.class);
 	}
 
