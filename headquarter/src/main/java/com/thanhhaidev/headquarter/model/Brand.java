@@ -1,5 +1,6 @@
-package com.thanhhaidev.pos.model;
+package com.thanhhaidev.headquarter.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,13 +13,13 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "customer")
-public class Customer extends AuditModel {
-    private static final long serialVersionUID = 1L;
+@Entity(name = "brand")
+public class Brand {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String phone;
-    private int point;
+
+    @Column(name = "ipaddress")
+    private String ipAddress;
 }

@@ -1,4 +1,4 @@
-package com.thanhhaidev.pos.model;
+package com.thanhhaidev.headquarter.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,13 +12,12 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "customer")
-public class Customer extends AuditModel {
-    private static final long serialVersionUID = 1L;
+@Entity(name = "users")
+public class ApplicationUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
+    private String username;
+    private String password;
     private String name;
-    private String phone;
-    private int point;
 }
