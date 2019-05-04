@@ -34,7 +34,7 @@ public class Application {
 	private static final String URL_UPLOAD_FILE = "http://localhost:4000/uploadFile";
 	private static final String PATH_FILE = "E:/POS_System/headquarter/src/main/resources/database/";
 
-	@Scheduled(fixedDelay = 5000)
+	@Scheduled(fixedDelay = 1000 * 60)
 	public void scheduleTaskAsynchronizeData() throws FileExtensionException {
 		String authToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU1Njg1NTIwM30.wk7OkCPC8M_-2bZpt0Q_B2Wv9eEaSEQDSlxEILbnyuhs0Yko2Jl-xODsgpaaC3X_CnDfmkd8NzcPRVtcfAq6pQ";
 
