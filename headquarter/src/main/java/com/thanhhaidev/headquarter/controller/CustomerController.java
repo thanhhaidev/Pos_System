@@ -1,4 +1,4 @@
-package com.thanhhaidev.pos.controller;
+package com.thanhhaidev.headquarter.controller;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -7,9 +7,9 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
-import com.thanhhaidev.pos.exception.ResourceNotFoundException;
-import com.thanhhaidev.pos.model.Customer;
-import com.thanhhaidev.pos.repository.CustomerRepository;
+import com.thanhhaidev.headquarter.exception.ResourceNotFoundException;
+import com.thanhhaidev.headquarter.model.Customer;
+import com.thanhhaidev.headquarter.repository.CustomerRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

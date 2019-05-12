@@ -1,5 +1,10 @@
 package com.thanhhaidev.pos.model;
 
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -7,10 +12,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import javax.persistence.OneToMany;
+import javax.persistence.SecondaryTable;
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,8 +25,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "orders")
-public class Order extends AuditModel {
-    private static final long serialVersionUID = 1L;
+public class Order extends Auditable<String> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,13 +35,15 @@ public class Order extends AuditModel {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "customer_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
     private Customer customer;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "password" })
     private ApplicationUser user;
+
+    @OneToMany(mappedBy = "mOrder", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "morder" })
+    private Collection<OrderDetail> details;
 }

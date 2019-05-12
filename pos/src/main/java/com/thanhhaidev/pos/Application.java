@@ -7,12 +7,14 @@ import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 
 import com.thanhhaidev.pos.model.FileStorageProperties;
+import com.thanhhaidev.pos.service.UserDetailsServiceImpl;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.domain.AuditorAware;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -23,8 +25,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import net.minidev.json.JSONArray;
@@ -42,7 +42,7 @@ public class Application {
 	private static final String PATH_FILE = "E:/POS_System/pos/src/main/resources/database/";
 	private static final String URL_PRODUCT = "http://localhost:4000/api/v1/products";
 
-	@Scheduled(fixedDelay = 1000 * 60 * 3, initialDelay = 1000)
+	@Scheduled(cron = "0 0 0 * * ?")
 	public void scheduleTaskSaveData() {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMdd");
 		LocalDateTime now = LocalDateTime.now();
@@ -56,7 +56,7 @@ public class Application {
 				String name = (String) product.get("name");
 				int price = (int) product.get("price");
 
-				String authToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU1Njg1NTIwM30.wk7OkCPC8M_-2bZpt0Q_B2Wv9eEaSEQDSlxEILbnyuhs0Yko2Jl-xODsgpaaC3X_CnDfmkd8NzcPRVtcfAq6pQ";
+				String authToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU1ODQwNzMyMn0.Hm5U6NllTJ5socTf6qymvK9hKlxjZnMZn0Oj_t2wD-BpkHfVg42DnI2H-Ytem3aXFKGNIOz-thpjeibhdFDv0Q";
 
 				RestTemplate restTemplate = new RestTemplate();
 				HttpHeaders headers = new HttpHeaders();

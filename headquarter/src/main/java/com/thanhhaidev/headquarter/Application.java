@@ -13,6 +13,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileSystemResource;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -25,6 +26,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
+@EnableJpaAuditing
 @EnableConfigurationProperties({ FileStorageProperties.class })
 @Configuration
 @EnableScheduling
@@ -36,7 +38,7 @@ public class Application {
 
 	@Scheduled(fixedDelay = 1000 * 60)
 	public void scheduleTaskAsynchronizeData() throws FileExtensionException {
-		String authToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU1Njg1NTIwM30.wk7OkCPC8M_-2bZpt0Q_B2Wv9eEaSEQDSlxEILbnyuhs0Yko2Jl-xODsgpaaC3X_CnDfmkd8NzcPRVtcfAq6pQ";
+		String authToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU1ODQwNzMyMn0.Hm5U6NllTJ5socTf6qymvK9hKlxjZnMZn0Oj_t2wD-BpkHfVg42DnI2H-Ytem3aXFKGNIOz-thpjeibhdFDv0Q";
 
 		HttpHeaders headers = new HttpHeaders();
 		headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
