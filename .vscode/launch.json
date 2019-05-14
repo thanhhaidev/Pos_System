@@ -1,16 +1,5 @@
 {
-    "configurations": [
-        {
-            "type": "java",
-            "name": "Spring Boot-Application<headquarter>",
-            "request": "launch",
-            "cwd": "${workspaceFolder}",
-            "console": "internalConsole",
-            "mainClass": "com.thanhhaidev.headquarter.Application",
-            "projectName": "headquarter",
-            "args": ""
-        },
-        {
+    "configurations": [{
             "type": "java",
             "name": "Spring Boot-Application<pos>",
             "request": "launch",
@@ -22,12 +11,12 @@
         },
         {
             "type": "java",
-            "name": "Spring Boot-Application<master>",
+            "name": "Spring Boot-Application<headquarter>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
             "console": "internalConsole",
-            "mainClass": "com.thanhhaidev.master.Application",
-            "projectName": "master",
+            "mainClass": "com.thanhhaidev.headquarter.Application",
+            "projectName": "headquarter",
             "args": ""
         }
     ]
