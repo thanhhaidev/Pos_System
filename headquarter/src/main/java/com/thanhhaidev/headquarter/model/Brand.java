@@ -19,7 +19,10 @@ public class Brand {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-
     @Column(name = "ipaddress")
     private String ipAddress;
+
+    // @OneToMany(mappedBy = "mBrand", cascade = CascadeType.ALL)
+    // @Fetch(value = FetchMode.SELECT)
+    // private Set<Product> products;
 }

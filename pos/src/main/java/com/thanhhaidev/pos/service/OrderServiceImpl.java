@@ -1,7 +1,5 @@
 package com.thanhhaidev.pos.service;
 
-import java.util.Optional;
-
 import com.thanhhaidev.pos.model.Order;
 import com.thanhhaidev.pos.repository.OrderRepository;
 

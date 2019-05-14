@@ -7,14 +7,12 @@ import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 
 import com.thanhhaidev.pos.model.FileStorageProperties;
-import com.thanhhaidev.pos.service.UserDetailsServiceImpl;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.domain.AuditorAware;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -41,8 +39,9 @@ public class Application {
 
 	private static final String PATH_FILE = "E:/POS_System/pos/src/main/resources/database/";
 	private static final String URL_PRODUCT = "http://localhost:4000/api/v1/products";
+	private static final String URL_LOGIN = "http://localhost:4000/login";
 
-	@Scheduled(cron = "0 0 0 * * ?")
+	@Scheduled(fixedDelay = 1000 * 60, initialDelay = 1000 * 60 * 2)
 	public void scheduleTaskSaveData() {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMdd");
 		LocalDateTime now = LocalDateTime.now();

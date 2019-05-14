@@ -42,6 +42,13 @@ public class CustomerController {
         return ResponseEntity.ok().body(customer);
     }
 
+    @GetMapping("/customers/phone/{phone}")
+    public ResponseEntity<Customer> getCustomerByPhone(@PathVariable(value = "phone") String phone)
+            throws ResourceNotFoundException {
+        Customer customer = customerRepository.findCustomerByPhone(phone);
+        return ResponseEntity.ok().body(customer);
+    }
+
     @PostMapping("/customers")
     public Customer createUser(@Valid @RequestBody Customer customer) {
         return customerRepository.save(customer);
@@ -55,6 +62,17 @@ public class CustomerController {
 
         customer.setName(cutsomerDetails.getName());
         customer.setPhone(cutsomerDetails.getPhone());
+        customer.setLastModifiedDate(new Date());
+        final Customer updatedCustomer = customerRepository.save(customer);
+        return ResponseEntity.ok(updatedCustomer);
+    }
+
+    @PutMapping("/customers/phone/{phone}")
+    public ResponseEntity<Customer> updateCustomerByPhone(@PathVariable(value = "phone") String phone,
+            @Valid @RequestBody Customer cutsomerDetails) throws ResourceNotFoundException {
+        Customer customer = customerRepository.findCustomerByPhone(phone);
+        customer.setName(cutsomerDetails.getName());
+        customer.setPoint(cutsomerDetails.getPoint());
         customer.setLastModifiedDate(new Date());
         final Customer updatedCustomer = customerRepository.save(customer);
         return ResponseEntity.ok(updatedCustomer);

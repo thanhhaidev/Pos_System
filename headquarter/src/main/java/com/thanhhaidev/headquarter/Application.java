@@ -36,7 +36,7 @@ public class Application {
 	private static final String URL_UPLOAD_FILE = "http://localhost:4000/uploadFile";
 	private static final String PATH_FILE = "E:/POS_System/headquarter/src/main/resources/database/";
 
-	@Scheduled(fixedDelay = 1000 * 60)
+	@Scheduled(fixedDelay = 1000 * 60, initialDelay = 1000 * 60)
 	public void scheduleTaskAsynchronizeData() throws FileExtensionException {
 		String authToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU1ODQwNzMyMn0.Hm5U6NllTJ5socTf6qymvK9hKlxjZnMZn0Oj_t2wD-BpkHfVg42DnI2H-Ytem3aXFKGNIOz-thpjeibhdFDv0Q";
 
@@ -46,7 +46,7 @@ public class Application {
 		headers.add("Authorization", "Bearer " + authToken);
 
 		RestTemplate restTemplate = new RestTemplate();
-		restTemplate.exchange(URL_PRODUCT + "1", HttpMethod.GET, new HttpEntity<>("parameters", headers), String.class);
+		restTemplate.exchange(URL_PRODUCT + "1", HttpMethod.GET, new HttpEntity<>(null, headers), String.class);
 
 		headers.setContentType(MediaType.MULTIPART_FORM_DATA);
 		MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();

@@ -42,7 +42,7 @@ public class ProductController {
         return productRepository.findById(id);
     }
 
-    @GetMapping("products/brand/{brandId}")
+    @GetMapping("/products/brand/{brandId}")
     public String getProductByBrandId(@PathVariable Long brandId) throws ParseException {
         List<Product> lstProduct = productRepository.findProductByBrandId(brandId);
 
@@ -62,14 +62,7 @@ public class ProductController {
     }
 
     @PostMapping("/products")
-    public ResponseEntity<Object> createProduct(@RequestBody Product product) {
-        productRepository.save(product);
-
-        // Set the location header for the newly created resource
-        HttpHeaders responseHeaders = new HttpHeaders();
-        URI newPollUri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(product.getId())
-                .toUri();
-        responseHeaders.setLocation(newPollUri);
-        return new ResponseEntity<>("Product is created successfully", HttpStatus.CREATED);
+    public Product createProduct(@RequestBody Product product) {
+        return productRepository.save(product);
     }
 }
