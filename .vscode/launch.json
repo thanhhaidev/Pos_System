@@ -1,5 +1,6 @@
 {
-    "configurations": [{
+    "configurations": [
+        {
             "type": "java",
             "name": "Spring Boot-Application<pos>",
             "request": "launch",
@@ -17,6 +18,36 @@
             "console": "internalConsole",
             "mainClass": "com.thanhhaidev.headquarter.Application",
             "projectName": "headquarter",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-Application<pos1>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.thanhhaidev.pos1.Application",
+            "projectName": "pos1",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-LoadbalancerApplication<loadbalancer>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.thanhhaidev.loadbalancer.LoadbalancerApplication",
+            "projectName": "loadbalancer",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-Application<pos2>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.thanhhaidev.pos2.Application",
+            "projectName": "pos2",
             "args": ""
         }
     ]

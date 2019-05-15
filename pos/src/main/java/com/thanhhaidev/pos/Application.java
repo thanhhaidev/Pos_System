@@ -39,7 +39,6 @@ public class Application {
 
 	private static final String PATH_FILE = "E:/POS_System/pos/src/main/resources/database/";
 	private static final String URL_PRODUCT = "http://localhost:4000/api/v1/products";
-	private static final String URL_LOGIN = "http://localhost:4000/login";
 
 	@Scheduled(fixedDelay = 1000 * 60, initialDelay = 1000 * 60 * 2)
 	public void scheduleTaskSaveData() {
