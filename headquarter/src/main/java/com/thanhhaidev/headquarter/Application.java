@@ -34,6 +34,8 @@ public class Application {
 
 	private static final String URL_PRODUCT = "http://localhost:4100/api/v1/products/brand/";
 	private static final String URL_UPLOAD_FILE = "http://localhost:4000/uploadFile";
+	private static final String URL_UPLOAD_FILE_1 = "http://localhost:4001/uploadFile";
+	private static final String URL_UPLOAD_FILE_2 = "http://localhost:4002/uploadFile";
 	private static final String PATH_FILE = "E:/POS_System/headquarter/src/main/resources/database/";
 
 	@Scheduled(fixedDelay = 1000 * 60, initialDelay = 1000 * 60)
@@ -47,6 +49,8 @@ public class Application {
 
 		RestTemplate restTemplate = new RestTemplate();
 		restTemplate.exchange(URL_PRODUCT + "1", HttpMethod.GET, new HttpEntity<>(null, headers), String.class);
+		restTemplate.exchange(URL_PRODUCT + "2", HttpMethod.GET, new HttpEntity<>(null, headers), String.class);
+		restTemplate.exchange(URL_PRODUCT + "3", HttpMethod.GET, new HttpEntity<>(null, headers), String.class);
 
 		headers.setContentType(MediaType.MULTIPART_FORM_DATA);
 		MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
@@ -57,8 +61,12 @@ public class Application {
 		System.out.println(PATH_FILE + "product_" + dtf.format(now) + "_1.json");
 
 		body.add("file", getFile(PATH_FILE + "product_" + dtf.format(now) + "_1.json"));
+		body.add("file", getFile(PATH_FILE + "product_" + dtf.format(now) + "_2.json"));
+		body.add("file", getFile(PATH_FILE + "product_" + dtf.format(now) + "_3.json"));
 		HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
 		restTemplate.postForEntity(URL_UPLOAD_FILE, requestEntity, String.class);
+		restTemplate.postForEntity(URL_UPLOAD_FILE_1, requestEntity, String.class);
+		restTemplate.postForEntity(URL_UPLOAD_FILE_2, requestEntity, String.class);
 	}
 
 	public FileSystemResource getFile(String fileName) throws FileExtensionException {
